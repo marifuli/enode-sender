@@ -9,6 +9,6 @@ onMounted(() => {
 </script>
 <template>
     <div>
-        dfawef awe {{ $store.state.smtps }}
+        <div ></div>
     </div>
 </template>
