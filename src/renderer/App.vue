@@ -2,18 +2,19 @@
 import SideNav from './components/SideNav.vue'
 import Smtps from './components/Sections/Smtps.vue'
 import { ref } from 'vue'
+import { useStore } from "vuex"
 
+const store = useStore()
 let active_sectoin = ref('')
 function setSection(type) {
-	active_sectoin.value = type 
+	active_sectoin.value = type
 }
 </script>
 <template>
-	<div style="display: flex;">
+	<div>
 		<SideNav :setSection="setSection"/>
-		<div>
-			{{ active_sectoin }}
-			<div class="m-3">
+		<div style="width: 100%;padding: 20px;padding-left: 220px;">
+			<div style="max-width: 1200px; margin: auto">
 				<Smtps v-if="active_sectoin === 'smtp'" />	
 			</div>
 		</div>

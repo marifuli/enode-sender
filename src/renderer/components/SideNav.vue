@@ -14,8 +14,8 @@ function setNav(n) {
 }
 ;</script>
 <template>
-    <div>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width:200px; height: 100vh;">
+    <div style="display: fixed; width: 200px; height: 100vh;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width:200px; height: 100%;">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
                     <a @click="setNav('smtp')" 

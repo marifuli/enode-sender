@@ -7,8 +7,8 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
-      nodeIntegration: false,
-      contextIsolation: true,
+      nodeIntegration: true,
+      contextIsolation: false,
     },
     autoHideMenuBar: true,
   });
@@ -25,15 +25,14 @@ function createWindow () {
 
 app.whenReady().then(() => {
   createWindow();
-
-  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': ['script-src \'self\'']
-      }
-    })
-  })
+  // session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+  //   callback({
+  //     responseHeaders: {
+  //       ...details.responseHeaders,
+  //       'Content-Security-Policy': ['script-src \'self\'']
+  //     }
+  //   })
+  // })
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

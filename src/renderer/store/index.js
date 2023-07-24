@@ -7,13 +7,7 @@ export default createStore({
             delay_between_sending: 0, // seconds
         },
         smtps: [
-            {
-                host: "",
-                port: "",
-                auth: true,
-                username: "",
-                password: "",
-            }
+            
         ],
         email_addresses: [],
         email_template: {
@@ -29,6 +23,12 @@ export default createStore({
     mutations: {
         update_smtps(state, data) {
             state.smtps = data 
+        },
+        add_smtp(state, data) {
+            state.smtps.push(data) 
+        },
+        remove_smtp(state, data) {
+            state.smtps.splice(data, 1) 
         },
     },
     getters: {
