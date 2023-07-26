@@ -42,7 +42,6 @@ function setNav(n) {
                     </a>
                 </li>
             </ul>
-            {{ active_nav }}
         </div>
     </div>
 </template>
