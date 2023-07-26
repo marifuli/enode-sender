@@ -14,7 +14,7 @@ function setNav(n) {
 }
 ;</script>
 <template>
-    <div style="display: fixed; width: 200px; height: 100vh;">
+    <div style="position: fixed; width: 200px; height: 100vh;">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width:200px; height: 100%;">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -42,6 +42,7 @@ function setNav(n) {
                     </a>
                 </li>
             </ul>
+            {{ active_nav }}
         </div>
     </div>
 </template>
