@@ -25,6 +25,10 @@
     "vite": "^4.1.1"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^38.1.1",
+    "@ckeditor/ckeditor5-source-editing": "^38.1.1",
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
+    "@mayasabha/ckeditor4-vue3": "^1.0.5",
     "nodemailer": "^6.9.4",
     "vue": "^3.2.47",
     "vuex": "^4.1.0"

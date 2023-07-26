@@ -21,6 +21,25 @@ function remove_smtp(i) {
 </script>
 <template>
     <div>
+        <div class="card mt-2 p-3">
+            <h5>
+                Settings:
+            </h5>
+            <div>
+                <div class="form-group">
+                    <label for="">Auto switch smtp after every mail:</label>
+                    <select v-model="store.state.settings.auto_switch_smtp" class="form-control">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Delay after a mail is sent: in seconds</label>
+                    <input type="number" v-model="store.state.settings.delay_between_sending" class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <hr>
         <div class="card mt-2" v-for="(smtp, i) in store.state.smtps" :key="i">
             <div class="card-title">
                 <button class="btn btn-danger btn-sm" @click="remove_smtp(i)">

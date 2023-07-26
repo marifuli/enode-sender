@@ -3,8 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
     state: {
         settings: {
-            auto_switch_smtp: 0, // keep 0 for not changing
-            delay_between_sending: 0, // seconds
+            auto_switch_smtp: "0", // keep 0 for not changing
+            delay_between_sending: "0", // seconds
         },
         smtps: [
             
@@ -14,6 +14,8 @@ export default createStore({
             subject: "",
             body: "",
             attachment: null,
+            include_data_in_attachment: true,
+            url_per_domain: {}
         },
         sending_results: {
             successful: [],
@@ -28,6 +30,9 @@ export default createStore({
             state.smtps.push(data) 
         },
         remove_smtp(state, data) {
+            state.smtps.splice(data, 1) 
+        },
+        remove_email(state, i) {
             state.smtps.splice(data, 1) 
         },
     },
