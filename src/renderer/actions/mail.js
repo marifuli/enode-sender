@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 
-function sendMail (smtp) {
+async function sendMail (state, report_error, report_success) 
+{
     const transporter = nodemailer.createTransport({
         host: smtp.host,
         port: smtp.port,
