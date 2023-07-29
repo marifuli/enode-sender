@@ -1,8 +1,8 @@
 const nodemailer = require("nodemailer");
 
-async function sendMail (state, report_error, report_success) 
+function createClient(smtp)
 {
-    const transporter = nodemailer.createTransport({
+    return nodemailer.createTransport({
         host: smtp.host,
         port: smtp.port,
         secure: smtp.secure == 1,
@@ -11,20 +11,63 @@ async function sendMail (state, report_error, report_success)
             pass: smtp.password
         }
     });
-    var message = {
-        from: "sender@server.com",
-        to: "receiver@sender.com",
-        subject: "Message title",
-        text: "Plaintext version of the message",
-        html: "<p>HTML version of the message</p>",
-        attachments: [
+}
+const delay = seconds => new Promise(resolve => setTimeout(resolve, seconds * 1000))
+async function sendMail (state, callbacks) 
+{
+    window.last_smtp_index = -1
+    for (let index = 0; index < state.email_addresses.length; index++) 
+    {
+        const email = state.email_addresses[index];
+        window.last_smtp_index++
+        if(!state.smtps[window.last_smtp_index]) window.last_smtp_index = 0
+        const smtp = state.smtps[window.last_smtp_index]
+        if(!callbacks.canContinue()) index += state.email_addresses.length
+        else {
+            console.log(state.email_template.attachment)
+            let attachment = null;
+            if(state.email_template.attachment)
             {
-                filename: 'text.html',
-                content: 'hell',
-                contentType: 'text/html'
+                attachment = {
+                    filename: 'text.html',
+                    content: 'hell' + '',
+                    contentType: 'text/html'
+                }
             }
-        ]
-    };
-    return transporter.sendMail(message)
+            const message = {
+                from: (smtp.mail_from || state.settings.default_mail_from) || "sender@server.com",
+                to: email,
+                subject: state.email_template.subject,
+                // text: "Plaintext version of the message",
+                html: state.email_template.body,
+                attachments: attachment ? [
+                    attachment,
+                ] : []
+            };
+            try {
+                const transporter = createClient(smtp)
+                const res = await transporter.sendMail(message)
+                // console.log(res)
+                if(res && res.accepted && res.accepted.length)
+                {
+                    callbacks.success(email)
+                }else 
+                {
+                    callbacks.failed(email)
+                }    
+            } catch (error) {
+                // console.log(error);
+                callbacks.failed(email)
+            }
+        }
+        
+        // delay of neede 
+        if(state.settings.delay_between_sending * 1)
+        {
+            console.log("Waiting for " + (state.settings.delay_between_sending * 1))
+            await delay(state.settings.delay_between_sending * 1)
+        }
+    }
+    callbacks.completed()
 }
 export default sendMail;

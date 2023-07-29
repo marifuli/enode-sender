@@ -3,16 +3,20 @@ import { createStore } from 'vuex'
 export default createStore({
     state: {
         settings: {
-            auto_switch_smtp: "0", // keep 0 for not changing
             delay_between_sending: "0", // seconds
+            default_mail_from: "admin@example.com"
         },
         smtps: [
             
         ],
-        email_addresses: [],
+        email_addresses: [
+            "hi@smtp",
+            "hi2@smtp",
+            "hi3@smtp",
+        ],
         email_template: {
-            subject: "",
-            body: "",
+            subject: "Hello there",
+            body: "Hi my firends!",
             attachment: null,
             include_data_in_attachment: true,
             url_per_domain: {}

@@ -6,7 +6,7 @@ const props = defineProps({
 })
 let active_nav = ref()
 onBeforeMount(() => {
-    setNav('smtp')
+    setNav('sending')
 })
 function setNav(n) {
     active_nav.value = n

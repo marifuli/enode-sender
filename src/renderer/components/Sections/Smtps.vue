@@ -26,16 +26,20 @@ function remove_smtp(i) {
                 Settings:
             </h5>
             <div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="">Auto switch smtp after every mail:</label>
                     <select v-model="store.state.settings.auto_switch_smtp" class="form-control">
                         <option value="0">No</option>
                         <option value="1">Yes</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="">Delay after a mail is sent: in seconds</label>
                     <input type="number" v-model="store.state.settings.delay_between_sending" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="">Defaul Email from address:</label>
+                    <input type="text" v-model="store.state.settings.default_mail_from" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -81,6 +85,12 @@ function remove_smtp(i) {
                         <div class="form-group">
                             <label for="">Password:</label>
                             <input v-model="smtp.password" type="text" class="form-control" placeholder="12345678">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="">Email from address:</label>
+                            <input v-model="smtp.mail_from" type="text" class="form-control" placeholder="12345678">
                         </div>
                     </div>
                 </div>
