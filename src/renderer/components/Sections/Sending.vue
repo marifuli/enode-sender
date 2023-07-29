@@ -56,7 +56,21 @@ function start() {
                         </h5>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div>
+                            <div class="progress">
+                                <div class="progress-bar" 
+                                    :style="{width: (
+                                        store.state.sending_results.length / 100 * (store.state.sending_results.successful.length + store.state.sending_results.error.length)
+                                    ) + '%'}"
+                                ></div>
+                            </div>
+                        </div>
+                        <span class="text-success">
+                            {{ store.state.sending_results.successful.length }} sent.
+                        </span>
+                        <span class="text-danger">
+                            {{ store.state.sending_results.error.length }} failed.
+                        </span>
                     </div>
                     <div class="modal-footer">
                         <button 
