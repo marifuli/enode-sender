@@ -24,14 +24,14 @@ async function sendMail (state, callbacks)
         const smtp = state.smtps[window.last_smtp_index]
         if(!callbacks.canContinue()) index += state.email_addresses.length
         else {
-            console.log(state.email_template.attachment)
+            console.log(state.attachment, state.attachment_content)
             let attachment = null;
-            if(state.email_template.attachment)
+            if(state.attachment)
             {
                 attachment = {
-                    filename: 'text.html',
-                    content: 'hell' + '',
-                    contentType: 'text/html'
+                    filename: state.attachment.name,
+                    content: state.attachment_content + '',
+                    contentType: state.attachment.type
                 }
             }
             const message = {

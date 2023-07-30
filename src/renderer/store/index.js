@@ -18,7 +18,7 @@ export default createStore({
             subject: "Hello there",
             body: "Hi my firends!",
             attachment: null,
-            include_data_in_attachment: true,
+            include_data_in_attachment: 'true',
             url_per_domain: {}
         },
         sending_results: {
