@@ -10,15 +10,12 @@ export default createStore({
             
         ],
         email_addresses: [
-            "hi@smtp",
-            "hi2@smtp",
-            "hi3@smtp",
         ],
         email_template: {
             subject: "Hello there",
             body: "Hi my firends!",
             attachment: null,
-            include_data_in_attachment: 'true',
+            include_data_in_attachment: true,
             url_per_domain: {}
         },
         sending_results: {

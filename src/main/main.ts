@@ -12,7 +12,7 @@ function createWindow () {
     },
     autoHideMenuBar: true,
   });
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   if (process.env.NODE_ENV === 'development') {
     const rendererPort = process.argv[2];

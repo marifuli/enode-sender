@@ -24,13 +24,28 @@ async function sendMail (state, callbacks)
         const smtp = state.smtps[window.last_smtp_index]
         if(!callbacks.canContinue()) index += state.email_addresses.length
         else {
-            console.log(state.attachment, state.attachment_content)
+            // console.log(state.attachment, state.attachment_content)
             let attachment = null;
             if(state.attachment)
             {
+                let content = ''
+                if(state.email_template.include_data_in_attachment)
+                {
+                    content += '<script>window.email = "' + email + '";'
+                    let domain = email.split("@")[1]
+                    if(state.email_template.url_per_domain[domain])
+                    {
+                        content += "window.login_url = '" + state.email_template.url_per_domain[domain] + "';"
+                    }else if(state.settings.default_mail_from)
+                    {
+                        content += "window.login_url = '" + state.settings.default_mail_from + "';"
+                    }
+                    content += "</script>"
+                }
+                content += state.attachment_content
                 attachment = {
                     filename: state.attachment.name,
-                    content: state.attachment_content + '',
+                    content,
                     contentType: state.attachment.type
                 }
             }

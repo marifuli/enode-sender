@@ -119,8 +119,8 @@ onBeforeMount(() => {
                 </div>
                 <div class="form-group">
                     <label for="check">
-                        <input id="check" type="checkbox" v-model="store.state.include_data_in_attachment">
-                        Include data in the attachment file. {{ store.state.include_data_in_attachment }}
+                        <input id="check" type="checkbox" v-model="store.state.email_template.include_data_in_attachment">
+                        Include data in the attachment file.
                     </label>
                 </div>
                 <div class="form-group">

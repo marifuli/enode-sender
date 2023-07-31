@@ -8,11 +8,11 @@ onMounted(() => {
 });
 function add_smtp() {
     store.commit('add_smtp', {
-        host: "sandbox.smtp.mailtrap.io",
-        port: "2525",
+        host: "",
+        port: "",
         secure: "0",
-        username: "17e53a1f4e4584",
-        password: "28be09680abf70",
+        username: "",
+        password: "",
     })
 }
 function remove_smtp(i) {
@@ -90,7 +90,7 @@ function remove_smtp(i) {
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="">Email from address:</label>
-                            <input v-model="smtp.mail_from" type="text" class="form-control" placeholder="12345678">
+                            <input v-model="smtp.mail_from" type="text" class="form-control" placeholder="noreply@domain.com">
                         </div>
                     </div>
                 </div>
